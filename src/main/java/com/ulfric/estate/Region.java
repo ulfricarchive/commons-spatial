@@ -4,6 +4,7 @@ import com.ulfric.commons.naming.Named;
 import com.ulfric.commons.value.Bean;
 import com.ulfric.commons.value.Weighted;
 import com.ulfric.commons.value.builder.Buildable;
+import com.ulfric.estate.shape.Empty;
 import com.ulfric.estate.shape.Shape;
 
 import java.util.Objects;
@@ -28,11 +29,15 @@ public final class Region extends Bean implements Named, Weighted, Comparable<Re
 		public Region build() {
 			Objects.requireNonNull(name, "name");
 
-			return new Region(name, weight, bounds, flags());
+			return new Region(name, weight, bounds(), flags());
 		}
 
 		private Flags flags() {
 			return flags == null ? Flags.EMPTY : flags;
+		}
+
+		private Shape bounds() {
+			return bounds == null ? Empty.INSTANCE : bounds;
 		}
 
 		public Builder setName(String name) {

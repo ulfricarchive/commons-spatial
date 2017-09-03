@@ -12,8 +12,8 @@ public final class Cube extends Shape {
 	private final int maxY;
 	private final int maxZ;
 
-	public Cube(Point min, Point max) {
-		super(min, max);
+	public Cube(Point x, Point z) {
+		super(x, z);
 
 		this.minX = min.getX();
 		this.minY = min.getY();

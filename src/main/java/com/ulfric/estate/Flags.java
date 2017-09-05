@@ -11,6 +11,7 @@ import com.google.gson.JsonObject;
 
 import com.ulfric.commons.json.JsonHelper;
 import com.ulfric.commons.reflect.MethodHelper;
+import com.ulfric.commons.reflect.TypeHelper;
 import com.ulfric.commons.value.Bean;
 import com.ulfric.dragoon.reflect.Classes;
 
@@ -105,7 +106,7 @@ public class Flags extends Bean {
 		for (String flag : json.keySet()) {
 			Class<?> type = FLAGS.get(flag);
 
-			if (type == null) {
+			if (!TypeHelper.isInterface(type)) {
 				continue; // TODO log this
 			}
 

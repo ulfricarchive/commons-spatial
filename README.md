@@ -1,2 +1,2 @@
-# spatial-regions
+# commons-spatial
 Java 3d regions framework

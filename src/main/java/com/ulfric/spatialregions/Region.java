@@ -1,11 +1,11 @@
-package com.ulfric.estate;
+package com.ulfric.spatialregions;
 
 import com.ulfric.commons.naming.Named;
 import com.ulfric.commons.value.Bean;
 import com.ulfric.commons.value.Weighted;
 import com.ulfric.commons.value.builder.Buildable;
-import com.ulfric.estate.shape.Empty;
-import com.ulfric.estate.shape.Shape;
+import com.ulfric.spatialregions.shape.Empty;
+import com.ulfric.spatialregions.shape.Shape;
 
 import java.util.Objects;
 

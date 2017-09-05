@@ -1,4 +1,4 @@
-package com.ulfric.estate;
+package com.ulfric.spatialregions;
 
 import java.util.List;
 

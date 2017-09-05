@@ -1,4 +1,4 @@
-package com.ulfric.estate.shape;
+package com.ulfric.spatialregions.shape;
 
 import org.apache.commons.collections4.map.CaseInsensitiveMap;
 

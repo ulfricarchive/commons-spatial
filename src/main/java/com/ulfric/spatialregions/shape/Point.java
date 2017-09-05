@@ -1,4 +1,4 @@
-package com.ulfric.estate.shape;
+package com.ulfric.spatialregions.shape;
 
 import com.ulfric.commons.value.Bean;
 

@@ -16,8 +16,11 @@ import com.ulfric.commons.value.Bean;
 import com.ulfric.dragoon.reflect.Classes;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Flags extends Bean {
 
@@ -37,10 +40,12 @@ public class Flags extends Bean {
 		validateIsInterface(flag);
 
 		flag = Classes.getNonDynamic(flag);
-		Method[] methods = flag.getDeclaredMethods();
-		validateIsSingular(flag, methods);
+		List<Method> methods = getFlagMethods(flag);
+		if (methods.size() != 1) {
+			throw new IllegalArgumentException(flag + " declares " + methods.size() + " non-statc methods, must be 1");
+		}
 
-		Method method = methods[0];
+		Method method = methods.get(0);
 		validateTakesNoParameters(method);
 		validateNotVoid(method);
 	}
@@ -51,19 +56,10 @@ public class Flags extends Bean {
 		}
 	}
 
-	private static void validateIsSingular(Class<?> flag, Method[] methods) {
-		int counter = 0;
-		for (Method method : methods) {
-			if (MethodHelper.isStatic(method)) {
-				continue;
-			}
-
-			counter++;
-		}
-
-		if (counter != 1) {
-			throw new IllegalArgumentException(flag + " declares " + counter + " non-statc methods, must be 1");
-		}
+	private static List<Method> getFlagMethods(Class<?> flag) {
+		return Arrays.stream(flag.getDeclaredMethods())
+				.filter(method -> !MethodHelper.isStatic(method))
+				.collect(Collectors.toList());
 	}
 
 	private static void validateTakesNoParameters(Method method) {

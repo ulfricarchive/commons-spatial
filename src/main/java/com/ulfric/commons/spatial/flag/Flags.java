@@ -1,4 +1,4 @@
-package com.ulfric.commons.spatial;
+package com.ulfric.commons.spatial.flag;
 
 import net.bytebuddy.description.modifier.Visibility;
 import net.bytebuddy.dynamic.DynamicType;
@@ -74,7 +74,7 @@ public class Flags extends Bean {
 		}
 	}
 
-	public static void removeFlag(Class<? extends Flag> flag) {
+	public static void unregisterFlag(Class<? extends Flag> flag) {
 		Objects.requireNonNull(flag, "flag");
 
 		FLAGS.remove(getFlagName(flag), flag);

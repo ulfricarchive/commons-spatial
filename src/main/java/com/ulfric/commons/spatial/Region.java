@@ -1,6 +1,7 @@
 package com.ulfric.commons.spatial;
 
 import com.ulfric.commons.naming.Named;
+import com.ulfric.commons.spatial.flag.Flags;
 import com.ulfric.commons.value.Bean;
 import com.ulfric.commons.value.Weighted;
 import com.ulfric.commons.value.builder.Buildable;

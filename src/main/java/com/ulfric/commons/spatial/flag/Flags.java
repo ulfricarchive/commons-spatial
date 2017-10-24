@@ -1,26 +1,26 @@
 package com.ulfric.commons.spatial.flag;
 
-import net.bytebuddy.description.modifier.Visibility;
-import net.bytebuddy.dynamic.DynamicType;
-import net.bytebuddy.implementation.FieldAccessor;
-import net.bytebuddy.matcher.ElementMatchers;
-
-import org.apache.commons.collections4.map.CaseInsensitiveMap;
-
-import com.google.gson.JsonObject;
-
-import com.ulfric.commons.json.JsonHelper;
-import com.ulfric.commons.reflect.MethodHelper;
-import com.ulfric.commons.reflect.TypeHelper;
-import com.ulfric.commons.value.Bean;
-import com.ulfric.dragoon.reflect.Classes;
-
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import org.apache.commons.collections4.map.CaseInsensitiveMap;
+
+import com.google.gson.JsonObject;
+import com.ulfric.commons.json.JsonHelper;
+import com.ulfric.commons.reflect.MethodHelper;
+import com.ulfric.commons.reflect.TypeHelper;
+import com.ulfric.commons.value.Bean;
+import com.ulfric.dragoon.reflect.Classes;
+
+import net.bytebuddy.description.modifier.FieldManifestation;
+import net.bytebuddy.description.modifier.MethodManifestation;
+import net.bytebuddy.description.modifier.Visibility;
+import net.bytebuddy.dynamic.DynamicType;
+import net.bytebuddy.implementation.FieldAccessor;
 
 public class Flags extends Bean {
 
@@ -109,8 +109,8 @@ public class Flags extends Bean {
 			Method getter = getter(type);
 
 			builder = builder.implement(type)
-					.defineField(flag, getter.getGenericReturnType(), Visibility.PRIVATE)
-					.method(ElementMatchers.is(getter))
+					.defineField(flag, getter.getGenericReturnType(), Visibility.PRIVATE, FieldManifestation.FINAL)
+					.defineMethod(getter.getName(), getter.getGenericReturnType(), MethodManifestation.FINAL)
 					.intercept(FieldAccessor.ofField(flag));
 		}
 

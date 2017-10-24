@@ -109,7 +109,7 @@ public class Flags extends Bean {
 			Method getter = getter(type);
 
 			builder = builder.implement(type)
-					.defineField(flag, getter.getReturnType(), Visibility.PRIVATE)
+					.defineField(flag, getter.getGenericReturnType(), Visibility.PRIVATE)
 					.method(ElementMatchers.is(getter))
 					.intercept(FieldAccessor.ofField(flag));
 		}

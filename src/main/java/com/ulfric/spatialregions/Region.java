@@ -93,13 +93,7 @@ public final class Region extends Bean implements Named, Weighted, Comparable<Re
 
 	@Override
 	public int compareTo(Region other) {
-		int compare = Integer.compare(weight, other.weight);
-
-		if (compare != 0) {
-			return compare;
-		}
-
-		return name.compareToIgnoreCase(other.name);
+		return Integer.compare(weight, other.weight);
 	}
 
 	@Override

@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface RegionSpace {
 
-	List<Region> getRegions(int x, int y, int z);
+	List<Region> getRegions(int x, int z);
 
 	void add(Region region);
 

@@ -14,7 +14,7 @@ public class Shapes extends Bean {
 
 	static {
 		registerShape(Empty.class);
-		registerShape(Cube.class);
+		registerShape(Square.class);
 	}
 
 	public static void registerShape(Class<? extends Shape> shape) {
@@ -23,7 +23,7 @@ public class Shapes extends Bean {
 		SHAPES.put(getShapeName(shape), shape);
 	}
 
-	public static void removeFlag(Class<? extends Shape> shape) {
+	public static void unregisterShape(Class<? extends Shape> shape) {
 		Objects.requireNonNull(shape, "shape");
 
 		SHAPES.remove(getShapeName(shape), shape);

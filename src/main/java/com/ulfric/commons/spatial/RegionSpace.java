@@ -1,4 +1,4 @@
-package com.ulfric.spatialregions;
+package com.ulfric.commons.spatial;
 
 import java.util.List;
 

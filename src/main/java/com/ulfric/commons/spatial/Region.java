@@ -1,4 +1,4 @@
-package com.ulfric.spatialregions;
+package com.ulfric.commons.spatial;
 
 import com.ulfric.commons.naming.Named;
 import com.ulfric.commons.value.Bean;

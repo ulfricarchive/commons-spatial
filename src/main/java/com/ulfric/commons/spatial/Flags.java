@@ -1,4 +1,4 @@
-package com.ulfric.spatialregions;
+package com.ulfric.commons.spatial;
 
 import net.bytebuddy.description.modifier.Visibility;
 import net.bytebuddy.dynamic.DynamicType;

@@ -46,8 +46,8 @@ public final class SpatialHash<V> {
 		int maxZ = max.getZ() / size;
 
 		Int2ObjectMap<List<Entry>> data = this.data;
-		for (int x = minX; x < maxX; x++) {
-			for (int z = minZ; z < maxZ; z++) {
+		for (int x = minX; x <= maxX; x++) {
+			for (int z = minZ; z <= maxZ; z++) {
 				int packed = this.pack(x, z);
 				List<Entry> entries = data.computeIfAbsent(packed, Computations::newArrayListIgnoring);
 				entries.add(new Entry(shape, value));
@@ -68,12 +68,7 @@ public final class SpatialHash<V> {
 	}
 
 	public List<V> get(int x, int z) {
-		int packed = pack(x, z);
-
-		List<Entry> entries = data.get(packed);
-		if (CollectionUtils.isEmpty(entries)) {
-			return Collections.emptyList();
-		}
+		List<Entry> entries = getEntries(x, z);
 
 		int size = entries.size();
 		List<V> values = new ArrayList<>(size);
@@ -84,6 +79,30 @@ public final class SpatialHash<V> {
 			}
 		}
 		return values;
+	}
+
+	public V getAny(int x, int z) {
+		List<Entry> entries = getEntries(x, z);
+
+		for (int i = 0, size = entries.size(); i < size; i++) {
+			Entry entry = entries.get(i);
+			if (entry.shape.containsPoint(x, z)) {
+				return entry.value;
+			}
+		}
+
+		return null;
+	}
+
+	private List<Entry> getEntries(int x , int z) {
+		int packed = pack(x / this.sectionSize, z / this.sectionSize);
+
+		List<Entry> entries = data.get(packed);
+		if (CollectionUtils.isEmpty(entries)) {
+			return Collections.emptyList();
+		}
+
+		return entries;
 	}
 
 	private int pack(int x, int z) {

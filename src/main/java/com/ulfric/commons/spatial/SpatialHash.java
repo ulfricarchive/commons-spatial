@@ -3,8 +3,8 @@ package com.ulfric.commons.spatial;
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.ulfric.commons.collection.Computations;
-import com.ulfric.spatialregions.shape.Point2d;
-import com.ulfric.spatialregions.shape.Shape;
+import com.ulfric.commons.spatial.shape.Point2d;
+import com.ulfric.commons.spatial.shape.Shape;
 
 import java.util.ArrayList;
 import java.util.Collections;

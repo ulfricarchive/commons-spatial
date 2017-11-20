@@ -4,8 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.google.common.truth.Truth;
-import com.ulfric.spatialregions.shape.Point2d;
-import com.ulfric.spatialregions.shape.Square;
+import com.ulfric.commons.spatial.shape.Point2d;
+import com.ulfric.commons.spatial.shape.Square;
 
 class SpatialHashTest {
 

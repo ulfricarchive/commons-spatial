@@ -1,8 +1,5 @@
 package com.ulfric.commons.spatial.shape;
 
-import com.ulfric.commons.naming.Name;
-
-@Name("square")
 public final class Square extends Shape {
 
 	private final int minX;

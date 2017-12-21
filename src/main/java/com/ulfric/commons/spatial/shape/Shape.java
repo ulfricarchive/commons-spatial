@@ -1,11 +1,10 @@
 package com.ulfric.commons.spatial.shape;
 
-import com.ulfric.commons.naming.Named;
-import com.ulfric.commons.value.Bean;
-
 import java.util.Objects;
 
-public abstract class Shape extends Bean implements Named {
+import com.ulfric.commons.value.Bean;
+
+public abstract class Shape extends Bean {
 
 	protected final Point2d min;
 	protected final Point2d max;

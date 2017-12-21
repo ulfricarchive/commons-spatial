@@ -1,14 +1,13 @@
 package com.ulfric.commons.spatial;
 
+import java.util.Objects;
+
 import com.ulfric.commons.naming.Named;
 import com.ulfric.commons.spatial.flag.Flags;
-import com.ulfric.commons.spatial.shape.Empty;
-import com.ulfric.commons.spatial.shape.Shape;
+import com.ulfric.commons.spatial.shape.Square;
 import com.ulfric.commons.value.Bean;
 import com.ulfric.commons.value.Weighted;
 import com.ulfric.commons.value.builder.Buildable;
-
-import java.util.Objects;
 
 public final class Region extends Bean implements Named, Weighted, Comparable<Region>, Buildable<Region> {
 
@@ -20,7 +19,7 @@ public final class Region extends Bean implements Named, Weighted, Comparable<Re
 
 		private String name;
 		private int weight;
-		private Shape bounds;
+		private Square bounds;
 		private Flags flags;
 
 		Builder() {
@@ -29,16 +28,13 @@ public final class Region extends Bean implements Named, Weighted, Comparable<Re
 		@Override
 		public Region build() {
 			Objects.requireNonNull(name, "name");
+			Objects.requireNonNull(bounds, "bounds");
 
-			return new Region(name, weight, bounds(), flags());
+			return new Region(name, weight, bounds, flags());
 		}
 
 		private Flags flags() {
 			return flags == null ? Flags.EMPTY : flags;
-		}
-
-		private Shape bounds() {
-			return bounds == null ? Empty.INSTANCE : bounds;
 		}
 
 		public Builder setName(String name) {
@@ -51,7 +47,7 @@ public final class Region extends Bean implements Named, Weighted, Comparable<Re
 			return this;
 		}
 
-		public Builder setBounds(Shape bounds) {
+		public Builder setBounds(Square bounds) {
 			this.bounds = bounds;
 			return this;
 		}
@@ -64,10 +60,10 @@ public final class Region extends Bean implements Named, Weighted, Comparable<Re
 
 	private final String name;
 	private final int weight;
-	private final Shape bounds;
+	private final Square bounds;
 	private final Flags flags;
 
-	private Region(String name, int weight, Shape bounds, Flags flags) {
+	private Region(String name, int weight, Square bounds, Flags flags) {
 		this.name = name;
 		this.weight = weight;
 		this.bounds = bounds;
@@ -84,7 +80,7 @@ public final class Region extends Bean implements Named, Weighted, Comparable<Re
 		return name;
 	}
 
-	public Shape getBounds() {
+	public Square getBounds() {
 		return bounds;
 	}
 
